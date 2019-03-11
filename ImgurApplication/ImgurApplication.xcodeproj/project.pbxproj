@@ -115,6 +115,7 @@
 				880E98C42230DDC300EFB01E /* Controllers */,
 				880E98D32230F20700EFB01E /* Services */,
 				880E98C52230DDF500EFB01E /* Support Files */,
+				880E989F2230DCD700EFB01E /* Info.plist */,
 			);
 			path = ImgurApplication;
 			sourceTree = "<group>";
@@ -178,7 +179,6 @@
 			children = (
 				880E98932230DCD400EFB01E /* AppDelegate.swift */,
 				880E989A2230DCD700EFB01E /* Assets.xcassets */,
-				880E989F2230DCD700EFB01E /* Info.plist */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";

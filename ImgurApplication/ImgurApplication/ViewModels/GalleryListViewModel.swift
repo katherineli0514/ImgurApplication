@@ -13,7 +13,7 @@ class GalleryListViewModel {
     private(set) var galleryViewModels = [GalleryViewModel]()
     private var webService: WebService
     
-    init(webService: WebService) {
+    init(_ webService: WebService) {
         self.webService = webService
         populateGalleries()
     }

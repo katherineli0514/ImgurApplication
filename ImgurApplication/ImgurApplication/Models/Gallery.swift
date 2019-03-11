@@ -13,14 +13,9 @@ class Gallery {
     var imageLink: String
     var title: String
     
-    init?(dictionary: [String: Any]) {
-        guard let imageLink = dictionary["link"] as? String, let title = dictionary["title"] as? String else {
-            return nil
-        }
-        
+    init(_ imageLink: String, _ title: String) {
         self.imageLink = imageLink
         self.title = title
     }
-    
     
 }
