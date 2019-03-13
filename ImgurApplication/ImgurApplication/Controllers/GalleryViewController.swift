@@ -21,6 +21,7 @@ class GalleryViewController: UIViewController {
     var searchText: String?
     // Debouncer for 250 ms
     let debouncer = Debouncer(timeInterval: 0.25)
+    var currentPage: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,24 @@ class GalleryViewController: UIViewController {
             return
         }
         
-        self.webService.loadGalleryBySearch(searchText, Constant.clientID) { [weak self] response in
+        self.webService.loadGalleryBySearch(1, searchText, Constant.clientID) { [weak self] response in
             self?.gallerys = response
+            self?.galleryCollectionView.reloadData()
+        }
+    }
+    
+    func fetchNextPage() {
+        guard let searchText = self.searchText else {
+            return
+        }
+        currentPage += 1
+        
+        // Depends on how many pages Imgur API has.
+        if currentPage > 20 {
+            return
+        }
+        self.webService.loadGalleryBySearch(currentPage, searchText, Constant.clientID) { [weak self] response in
+            self?.gallerys.append(contentsOf: response)
             self?.galleryCollectionView.reloadData()
         }
     }
@@ -64,6 +81,25 @@ extension GalleryViewController: UICollectionViewDataSource {
             return cell
         } else {
             return UICollectionViewCell()
+        }
+    }
+}
+
+extension GalleryViewController: UICollectionViewDelegate {
+    // Reload next page when user keeps scrolling from the bottom of collectionView
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size = scrollView.contentSize
+        let inset = scrollView.contentInset
+        let y: Float = Float(offset.y + bounds.size.height - inset.bottom)
+        let h: Float = Float(size.height)
+        
+        let reload_distance: Float = 50
+        
+        if y > h + reload_distance {
+            self.fetchNextPage()
         }
     }
 }
@@ -99,6 +135,7 @@ extension GalleryViewController: UISearchBarDelegate {
         self.gallerySearchBar.text = ""
         self.gallerySearchBar.resignFirstResponder()
         self.gallerys = []
+        self.currentPage = 0
         self.galleryCollectionView.reloadData()
     }
 }

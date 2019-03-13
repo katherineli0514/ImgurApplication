@@ -29,8 +29,8 @@ class WebService {
     
     private var imageCache = NSCache<NSString, UIImage>()
     
-    func loadGalleryBySearch(_ searchParameters: String, _ clientID: String, completion: @escaping ([Gallery]) -> Void) {
-        guard let url = URL(string: ImgurUrl.init(1, searchParameters).urlString) else {
+    func loadGalleryBySearch(_ page: Int, _ searchParameters: String, _ clientID: String, completion: @escaping ([Gallery]) -> Void) {
+        guard let url = URL(string: ImgurUrl.init(page, searchParameters).urlString) else {
             return
         }
         
