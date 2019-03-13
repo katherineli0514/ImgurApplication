@@ -19,6 +19,8 @@ class GalleryViewController: UIViewController {
     
     var filteredGallerys: [Gallery]?
     var searchText: String?
+    // Debouncer for 250 ms
+    let debouncer = Debouncer(timeInterval: 0.25)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,11 +80,13 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
 extension GalleryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        populateGalleries()
-        self.gallerySearchBar.resignFirstResponder()
+        
+        // Debounce the network call for searching
+        self.debouncer.renewInterval()
+        debouncer.handler = {
+            self.populateGalleries()
+            self.galleryCollectionView.reloadData()
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
