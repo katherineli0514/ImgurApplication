@@ -11,4 +11,5 @@ import Foundation
 enum Constant {
     static let cellReuseId = "PhotoCollectionViewCell"
     static let clientID = "126701cd8332f32"
+    static let imageDetailVCStoryBoardID = "ImageDetailViewController"
 }
