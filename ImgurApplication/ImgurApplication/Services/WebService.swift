@@ -33,7 +33,7 @@ class WebService {
         guard let url = URL(string: ImgurUrl.init(page, searchParameters).urlString) else {
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.setValue("Client-ID \(clientID)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -52,11 +52,11 @@ class WebService {
             } catch (let error) {
                 print("WebService request failed with: \(error)")
             }
-            
+
             DispatchQueue.main.async {
                 completion(gallerys)
             }
-            
+
         }.resume()
     }
     

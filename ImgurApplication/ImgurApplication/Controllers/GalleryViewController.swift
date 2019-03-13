@@ -124,7 +124,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
 extension GalleryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-        
+        self.gallerys = []
         // Debounce the network call for searching
         self.debouncer.renewInterval()
         debouncer.handler = {
