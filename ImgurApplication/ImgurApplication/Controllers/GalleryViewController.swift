@@ -58,7 +58,6 @@ extension GalleryViewController: UICollectionViewDataSource {
                         cell.photoImageView.image = image
                     }
                 }
-                
             }
             return cell
         } else {
@@ -84,6 +83,19 @@ extension GalleryViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         populateGalleries()
         self.gallerySearchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.gallerySearchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.gallerySearchBar.showsCancelButton = false
+        self.searchText = ""
+        self.gallerySearchBar.text = ""
+        self.gallerySearchBar.resignFirstResponder()
+        self.gallerys = []
+        self.galleryCollectionView.reloadData()
     }
 }
 
