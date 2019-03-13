@@ -68,14 +68,14 @@ extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellReuseId, for: indexPath) as? PhotoCollectionViewCell {
-            cell.galleryTitle.text = self.gallerys[indexPath.row].title
+            cell.galleryTitle.text = self.gallerys[indexPath.item].title
         
-            let imageLink = self.gallerys[indexPath.row].imageLink
+            let imageLink = self.gallerys[indexPath.item].imageLink
             self.webService.loadImageFromUrl(imageLink) { (image, error) in
                 DispatchQueue.main.async {
                     if let image = image, error == nil {
                         cell.photoImageView.image = image
-                    }
+                    } 
                 }
             }
             return cell
@@ -100,6 +100,14 @@ extension GalleryViewController: UICollectionViewDelegate {
         
         if y > h + reload_distance {
             self.fetchNextPage()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let imageDetailViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: Constant.imageDetailVCStoryBoardID) as? ImageDetailViewController {
+            imageDetailViewController.imageLink = self.gallerys[indexPath.item].imageLink
+            imageDetailViewController.galleryTitle = self.gallerys[indexPath.item].title
+            self.navigationController?.pushViewController(imageDetailViewController, animated: true)
         }
     }
 }

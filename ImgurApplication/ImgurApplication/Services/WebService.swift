@@ -75,11 +75,11 @@ class WebService {
                     completion(nil, error)
                 } else if let data = data, let image = UIImage(data: data) {
                     self.imageCache.setObject(image, forKey: urlString as NSString)
-                    completion(image, nil)
+                    DispatchQueue.main.async {
+                        completion(image, nil)
+                    }
                 }
             }.resume()
         }
-        
     }
-    
 }
