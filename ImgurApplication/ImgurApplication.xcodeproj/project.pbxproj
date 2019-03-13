@@ -21,6 +21,7 @@
 		880E98D02230EE8D00EFB01E /* GalleryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E98CF2230EE8D00EFB01E /* GalleryListViewModel.swift */; };
 		880E98D22230F09D00EFB01E /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E98D12230F09D00EFB01E /* WebService.swift */; };
 		880E98D522375CDD00EFB01E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E98D422375CDD00EFB01E /* Constants.swift */; };
+		881ED97B2238B7C1006928D2 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ED97A2238B7C1006928D2 /* Debouncer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		880E98CF2230EE8D00EFB01E /* GalleryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryListViewModel.swift; sourceTree = "<group>"; };
 		880E98D12230F09D00EFB01E /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		880E98D422375CDD00EFB01E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		881ED97A2238B7C1006928D2 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				880E98D12230F09D00EFB01E /* WebService.swift */,
+				881ED97A2238B7C1006928D2 /* Debouncer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				880E98962230DCD400EFB01E /* GalleryViewController.swift in Sources */,
 				880E98CE2230E70600EFB01E /* GalleryViewModel.swift in Sources */,
 				880E98D22230F09D00EFB01E /* WebService.swift in Sources */,
+				881ED97B2238B7C1006928D2 /* Debouncer.swift in Sources */,
 				880E98942230DCD400EFB01E /* AppDelegate.swift in Sources */,
 				880E98CC2230E60F00EFB01E /* Gallery.swift in Sources */,
 				880E98C82230E4BC00EFB01E /* PhotoCollectionViewCell.swift in Sources */,
