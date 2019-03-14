@@ -22,6 +22,7 @@ class GalleryViewController: UIViewController {
     // Debouncer for 250 ms
     let debouncer = Debouncer(timeInterval: 0.25)
     var currentPage: Int = 1
+    var visibleItems = [IndexPath]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,14 +111,31 @@ extension GalleryViewController: UICollectionViewDelegate {
             self.navigationController?.pushViewController(imageDetailViewController, animated: true)
         }
     }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            // Save the visible row position
+            self.visibleItems = self.galleryCollectionView.indexPathsForVisibleItems
+            context.viewController(forKey: UITransitionContextViewControllerKey.from)
+        }, completion: { context in
+            // Scroll to the saved position prior to screen rotate
+            self.galleryCollectionView.scrollToItem(at: self.visibleItems[0], at: .top, animated: false) 
+        })
+    }
 }
 
 extension GalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 25
         let collectionViewSize = collectionView.frame.size.width - padding
-
-        return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
+        var width: CGFloat = 0
+        // Display 3 columns on landscape, 2 columes on portrait
+        if UIDevice.current.orientation.isLandscape {
+            width = collectionViewSize/3
+        } else {
+            width = collectionViewSize/2
+        }
+        return CGSize(width: width, height: width)
     }
 }
 
