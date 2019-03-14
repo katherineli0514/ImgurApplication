@@ -27,7 +27,7 @@
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-QR-XOf">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XZI-Mz-afq">
                                     <size key="itemSize" width="88" height="92"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="top" secondItem="Xag-Rq-AoO" secondAttribute="bottom" id="WNg-ZV-2xI"/>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="top" secondItem="Xag-Rq-AoO" secondAttribute="bottom" id="Yuf-xa-ZEz"/>
@@ -86,7 +86,7 @@
                                 <rect key="frame" x="16" y="83" width="343" height="564"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="I5m-qL-p2E" firstAttribute="bottom" secondItem="VaW-nt-1H3" secondAttribute="bottom" constant="20" id="gNF-ur-P3H"/>
                             <constraint firstItem="VaW-nt-1H3" firstAttribute="leading" secondItem="I5m-qL-p2E" secondAttribute="leading" constant="16" id="jzd-pL-Mba"/>
