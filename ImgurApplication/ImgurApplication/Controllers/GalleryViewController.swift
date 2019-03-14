@@ -84,7 +84,10 @@ extension GalleryViewController: UICollectionViewDataSource {
                 DispatchQueue.main.async {
                     if let image = image, error == nil {
                         cell.photoImageView.image = image
-                    } 
+                        self.gallerys[indexPath.item].image = image
+                    } else {
+                        cell.photoImageView.image = UIImage(named: "PlaceHolderImage")
+                    }
                 }
             }
             return cell
@@ -116,6 +119,7 @@ extension GalleryViewController: UICollectionViewDelegate {
         if let imageDetailViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: Constant.imageDetailVCStoryBoardID) as? ImageDetailViewController {
             imageDetailViewController.imageLink = self.gallerys[indexPath.item].imageLink
             imageDetailViewController.galleryTitle = self.gallerys[indexPath.item].title
+            imageDetailViewController.image = self.gallerys[indexPath.item].image
             self.navigationController?.pushViewController(imageDetailViewController, animated: true)
         }
     }

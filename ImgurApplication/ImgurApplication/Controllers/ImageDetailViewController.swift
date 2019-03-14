@@ -15,21 +15,16 @@ class ImageDetailViewController: UIViewController {
     var imageLink = ""
     var galleryTitle = ""
     var webService = WebService()
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadImage()
         self.navigationItem.title = galleryTitle
+        self.displayImage()
     }
     
-    func loadImage() {
-        self.webService.loadImageFromUrl(imageLink) { [weak self] (image, error) in
-            DispatchQueue.main.async {
-                if let image = image, error == nil {
-                    self?.imageView.image = image
-                }
-            }
-        }
+    func displayImage() {
+        self.imageView.image = image
     }
 }
