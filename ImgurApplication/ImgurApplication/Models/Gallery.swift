@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class Gallery {
     
     var imageLink: String
     var title: String
+    var image: UIImage?
     
-    init(_ imageLink: String, _ title: String) {
+    init(_ imageLink: String, _ title: String, _ image: UIImage? = nil) {
         self.imageLink = imageLink
         self.title = title
+        self.image = image
     }
     
 }
