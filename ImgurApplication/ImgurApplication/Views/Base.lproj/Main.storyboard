@@ -19,14 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Xag-Rq-AoO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="41"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="c88-Vt-Klw"/>
                                 </connections>
                             </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nch-xN-zj8">
+                                <rect key="frame" x="42" y="295" width="291" height="141"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="I98-aN-Rpc">
+                                        <rect key="frame" x="115.5" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="c5A-uY-jzv"/>
+                                            <constraint firstAttribute="width" constant="50" id="ox4-Tm-igt"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Cats, Dogs, and more photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJd-dG-mjj">
+                                        <rect key="frame" x="0.0" y="60" width="281" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="I98-aN-Rpc" firstAttribute="top" secondItem="nch-xN-zj8" secondAttribute="top" id="1tv-ws-ql1"/>
+                                    <constraint firstItem="XJd-dG-mjj" firstAttribute="top" secondItem="I98-aN-Rpc" secondAttribute="bottom" constant="10" id="C1z-OI-VxU"/>
+                                    <constraint firstItem="XJd-dG-mjj" firstAttribute="leading" secondItem="nch-xN-zj8" secondAttribute="leading" id="hhW-UU-PQw"/>
+                                    <constraint firstItem="I98-aN-Rpc" firstAttribute="centerX" secondItem="XJd-dG-mjj" secondAttribute="centerX" id="pA4-G7-ydg"/>
+                                    <constraint firstItem="XJd-dG-mjj" firstAttribute="centerY" secondItem="nch-xN-zj8" secondAttribute="centerY" constant="10" id="wMt-GY-W3m"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-QR-XOf">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="105" width="375" height="562"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XZI-Mz-afq">
                                     <size key="itemSize" width="88" height="92"/>
@@ -52,12 +78,18 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nch-xN-zj8" secondAttribute="trailing" constant="42" id="57z-3F-T5g"/>
+                            <constraint firstItem="nch-xN-zj8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="OkF-RQ-ZWe"/>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="top" secondItem="Xag-Rq-AoO" secondAttribute="bottom" id="WNg-ZV-2xI"/>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="top" secondItem="Xag-Rq-AoO" secondAttribute="bottom" id="Yuf-xa-ZEz"/>
                             <constraint firstItem="Xag-Rq-AoO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZQq-b1-xcd"/>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bol-Qs-pOY"/>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="caC-5B-qMj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nch-xN-zj8" secondAttribute="bottom" constant="231" id="hNm-GP-BZG"/>
+                            <constraint firstItem="nch-xN-zj8" firstAttribute="top" secondItem="Xag-Rq-AoO" secondAttribute="bottom" constant="190" id="hUq-ay-Hxn"/>
+                            <constraint firstItem="nch-xN-zj8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="it7-pV-Cce"/>
                             <constraint firstItem="Xag-Rq-AoO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jNP-hq-9lE"/>
+                            <constraint firstItem="nch-xN-zj8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qWy-fi-F4x"/>
                             <constraint firstItem="Xag-Rq-AoO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uQL-pb-xHa"/>
                             <constraint firstItem="cWM-QR-XOf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="v6E-Ac-XIW"/>
                         </constraints>
@@ -67,12 +99,13 @@
                     <connections>
                         <outlet property="galleryCollectionView" destination="cWM-QR-XOf" id="On0-QZ-Bx0"/>
                         <outlet property="gallerySearchBar" destination="Xag-Rq-AoO" id="Mpg-Rr-4yJ"/>
+                        <outlet property="searchIconView" destination="nch-xN-zj8" id="FB3-j4-iSd"/>
                         <segue destination="sIZ-hE-fj0" kind="show" id="g4u-MG-fjV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="134"/>
+            <point key="canvasLocation" x="996" y="133.5832083958021"/>
         </scene>
         <!--Image Detail View Controller-->
         <scene sceneID="vUj-Te-sur">
@@ -83,15 +116,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VaW-nt-1H3">
-                                <rect key="frame" x="16" y="83" width="343" height="564"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="I5m-qL-p2E" firstAttribute="bottom" secondItem="VaW-nt-1H3" secondAttribute="bottom" constant="20" id="gNF-ur-P3H"/>
-                            <constraint firstItem="VaW-nt-1H3" firstAttribute="leading" secondItem="I5m-qL-p2E" secondAttribute="leading" constant="16" id="jzd-pL-Mba"/>
-                            <constraint firstItem="I5m-qL-p2E" firstAttribute="trailing" secondItem="VaW-nt-1H3" secondAttribute="trailing" constant="16" id="lXB-ZR-sN0"/>
-                            <constraint firstItem="VaW-nt-1H3" firstAttribute="top" secondItem="I5m-qL-p2E" secondAttribute="top" constant="19" id="skZ-jg-cZz"/>
+                            <constraint firstItem="I5m-qL-p2E" firstAttribute="bottom" secondItem="VaW-nt-1H3" secondAttribute="bottom" id="gNF-ur-P3H"/>
+                            <constraint firstItem="VaW-nt-1H3" firstAttribute="leading" secondItem="I5m-qL-p2E" secondAttribute="leading" id="jzd-pL-Mba"/>
+                            <constraint firstItem="I5m-qL-p2E" firstAttribute="trailing" secondItem="VaW-nt-1H3" secondAttribute="trailing" id="lXB-ZR-sN0"/>
+                            <constraint firstItem="VaW-nt-1H3" firstAttribute="top" secondItem="I5m-qL-p2E" secondAttribute="top" id="skZ-jg-cZz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I5m-qL-p2E"/>
                     </view>
@@ -123,4 +156,7 @@
             <point key="canvasLocation" x="170" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SearchIcon" width="512" height="512"/>
+    </resources>
 </document>

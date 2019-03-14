@@ -12,9 +12,17 @@ class GalleryViewController: UIViewController {
 
     @IBOutlet weak var gallerySearchBar: UISearchBar!
     @IBOutlet weak var galleryCollectionView: UICollectionView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchIconView: UIView!
     
-    private(set) var gallerys = [Gallery]()
+    private(set) var gallerys = [Gallery]() {
+        didSet {
+            if gallerys.count == 0 {
+                self.searchIconView.alpha = 1
+            } else {
+                self.searchIconView.alpha = 0
+            }
+        }
+    }
     private var webService = WebService()
     
     var filteredGallerys: [Gallery]?
