@@ -39,6 +39,13 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         
         galleryCollectionView.register(UINib(nibName: Constant.cellReuseId, bundle: nil), forCellWithReuseIdentifier: Constant.cellReuseId)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.gallerySearchBar.resignFirstResponder()
     }
     
     func populateGalleries() {
@@ -80,20 +87,24 @@ extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellReuseId, for: indexPath) as? PhotoCollectionViewCell {
-            cell.galleryTitle.text = self.gallerys[indexPath.item].title
-            let imageLink = self.gallerys[indexPath.item].imageLink
-            let gifLink = self.gallerys[indexPath.item].gifLink
-        
-            if let url = URL(string: imageLink) {
+            if indexPath.item < self.gallerys.count {
+                cell.galleryTitle.text = self.gallerys[indexPath.item].title
+                let imageLink = self.gallerys[indexPath.item].imageLink
+                let gifLink = self.gallerys[indexPath.item].gifLink
                 
-            cell.photoImageView.sd_setImage(with: url, placeholderImage: placeHolderImage, options: SDWebImageOptions(rawValue: 0)) { (image, error, cacheType, imageURL) in
-                // Gifv (mp4) images
-                if image == nil && gifLink != nil {
-                    print(imageLink)
-                    let url = URL(string: gifLink!)
-                    cell.photoImageView.setGifFromURL(url)
-                }
-                self.gallerys[indexPath.item].image = image
+                if let url = URL(string: imageLink) {
+                    
+                    cell.photoImageView.sd_setImage(with: url, placeholderImage: placeHolderImage, options: SDWebImageOptions(rawValue: 0)) { (image, error, cacheType, imageURL) in
+                        // Gifv (mp4) images
+                        if image == nil && gifLink != nil {
+                            print(imageLink)
+                            let url = URL(string: gifLink!)
+                            cell.photoImageView.setGifFromURL(url)
+                        }
+                        if indexPath.item < self.gallerys.count {
+                            self.gallerys[indexPath.item].image = image
+                        }
+                    }
                 }
             }
             return cell
@@ -167,6 +178,10 @@ extension GalleryViewController: UISearchBarDelegate {
             self.populateGalleries()
             self.galleryCollectionView.reloadData()
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.gallerySearchBar.resignFirstResponder()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
