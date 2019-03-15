@@ -39,13 +39,6 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         
         galleryCollectionView.register(UINib(nibName: Constant.cellReuseId, bundle: nil), forCellWithReuseIdentifier: Constant.cellReuseId)
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        self.gallerySearchBar.resignFirstResponder()
     }
     
     func populateGalleries() {
