@@ -18,16 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="Oh8-dF-tO1">
-                                <rect key="frame" x="127" y="288" width="120" height="90"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="Oh8-dF-tO1">
+                                <rect key="frame" x="107" y="273" width="160" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Oh8-dF-tO1" secondAttribute="height" multiplier="4:3" id="E6U-iH-Bfr"/>
+                                    <constraint firstAttribute="width" constant="160" id="YLR-nb-gh8"/>
+                                    <constraint firstAttribute="height" constant="120" id="tnW-GM-aTv"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Oh8-dF-tO1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="127" id="ZUY-9g-o5B"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oh8-dF-tO1" secondAttribute="trailing" constant="128" id="cxQ-n1-N8F"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Oh8-dF-tO1" secondAttribute="bottom" constant="289" id="fKc-39-gm8"/>
-                            <constraint firstItem="Oh8-dF-tO1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="268" id="njI-1j-Bme"/>
+                            <constraint firstItem="Oh8-dF-tO1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3F2-Kv-2f2"/>
+                            <constraint firstItem="Oh8-dF-tO1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fZY-UB-cpu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

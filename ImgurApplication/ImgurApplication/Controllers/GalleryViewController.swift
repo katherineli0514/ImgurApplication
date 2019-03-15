@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class GalleryViewController: UIViewController {
 
@@ -31,6 +32,7 @@ class GalleryViewController: UIViewController {
     let debouncer = Debouncer(timeInterval: 0.25)
     var currentPage: Int = 1
     var visibleItems = [IndexPath]()
+    let placeHolderImage = UIImage(named: "PlaceHolderImage")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,16 +80,16 @@ extension GalleryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellReuseId, for: indexPath) as? PhotoCollectionViewCell {
             cell.galleryTitle.text = self.gallerys[indexPath.item].title
-        
             let imageLink = self.gallerys[indexPath.item].imageLink
-            self.webService.loadImageFromUrl(imageLink) { (image, error) in
-                DispatchQueue.main.async {
-                    if let image = image, error == nil {
-                        cell.photoImageView.image = image
-                        self.gallerys[indexPath.item].image = image
-                    } else {
-                        cell.photoImageView.image = UIImage(named: "PlaceHolderImage")
-                    }
+        
+            if let url = URL(string: imageLink) {
+                
+            cell.photoImageView.sd_setImage(with: url, placeholderImage: placeHolderImage, options: SDWebImageOptions(rawValue: 0)) { (image, error, cacheType, imageURL) in
+                // Gifv (mp4) images
+                if image == nil {
+                    print(imageLink)
+                }
+                self.gallerys[indexPath.item].image = image
                 }
             }
             return cell

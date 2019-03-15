@@ -59,27 +59,4 @@ class WebService {
 
         }.resume()
     }
-    
-    func loadImageFromUrl(_ urlString: String, completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void) {
-        
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
-            completion(cachedImage, nil)
-        } else {
-            guard let url = URL(string: urlString) else {
-                return
-            }
-            
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    completion(nil, error)
-                } else if let data = data, let image = UIImage(data: data) {
-                    self.imageCache.setObject(image, forKey: urlString as NSString)
-                    DispatchQueue.main.async {
-                        completion(image, nil)
-                    }
-                }
-            }.resume()
-        }
-    }
 }
