@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class ImageDetailViewController: UIViewController {
 
@@ -21,10 +22,33 @@ class ImageDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = galleryTitle
-        self.displayImage()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.displayImageDetail()
+    }
+    
+    func displayImageDetail() {
+        if let _ = self.image {
+            displayImage()
+        } else {
+            playVideo()
+        }
     }
     
     func displayImage() {
         self.imageView.image = image
+    }
+    
+    func playVideo() {
+        if let videoURL = URL(string: imageLink) {
+            let player = AVPlayer(url: videoURL)
+            let playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = self.view.bounds
+            self.view.layer.addSublayer(playerLayer)
+            player.play()
+        }
     }
 }

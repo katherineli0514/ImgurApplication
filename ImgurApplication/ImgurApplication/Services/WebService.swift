@@ -27,8 +27,6 @@ struct ImgurUrl {
 
 class WebService {
     
-    private var imageCache = NSCache<NSString, UIImage>()
-    
     func loadGalleryBySearch(_ page: Int, _ searchParameters: String, _ clientID: String, completion: @escaping ([Gallery]) -> Void) {
         guard let url = URL(string: ImgurUrl.init(page, searchParameters).urlString) else {
             return
@@ -39,13 +37,16 @@ class WebService {
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
             var gallerys = [Gallery]()
+            var gifLink: String?
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 if let result = json as? [String: Any], let dataArray = result["data"] as? [[String: Any]] {
                     for data in dataArray {
-                        print(data)
                         if let images = data["images"] as? [[String: Any]], let imageLink = images[0]["link"] as? String, let title = data["title"] as? String {
-                            gallerys.append(Gallery(imageLink, title))
+                            if let gifv = images[0]["gifv"] as? String {
+                                gifLink = gifv.replacingOccurrences(of: "gifv", with: "gif")
+                            }
+                            gallerys.append(Gallery(imageLink, title, nil, gifLink))
                         }
                     }
                 }
@@ -58,28 +59,5 @@ class WebService {
             }
 
         }.resume()
-    }
-    
-    func loadImageFromUrl(_ urlString: String, completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void) {
-        
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
-            completion(cachedImage, nil)
-        } else {
-            guard let url = URL(string: urlString) else {
-                return
-            }
-            
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    completion(nil, error)
-                } else if let data = data, let image = UIImage(data: data) {
-                    self.imageCache.setObject(image, forKey: urlString as NSString)
-                    DispatchQueue.main.async {
-                        completion(image, nil)
-                    }
-                }
-            }.resume()
-        }
     }
 }

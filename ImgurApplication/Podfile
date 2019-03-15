@@ -1,0 +1,18 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'ImgurApplication' do
+  pod 'SDWebImage'
+  pod 'SwiftyGif'
+
+  target 'ImgurApplicationTests' do
+    inherit! :search_paths
+ 
+  end
+
+  target 'ImgurApplicationUITests' do
+    inherit! :search_paths
+    
+  end
+
+end

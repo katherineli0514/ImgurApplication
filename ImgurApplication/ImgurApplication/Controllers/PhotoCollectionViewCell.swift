@@ -17,10 +17,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    override func prepareForReuse() {
-        self.photoImageView.image = UIImage(named: "PlaceHolderImage")
-    }
-    
     deinit {
         self.photoImageView.image = nil
     }
