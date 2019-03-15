@@ -14,11 +14,13 @@ class Gallery {
     var imageLink: String
     var title: String
     var image: UIImage?
+    var gifLink: String?
     
-    init(_ imageLink: String, _ title: String, _ image: UIImage? = nil) {
+    init(_ imageLink: String, _ title: String, _ image: UIImage? = nil, _ gifLink: String? = nil) {
         self.imageLink = imageLink
         self.title = title
         self.image = image
+        self.gifLink = gifLink
     }
     
 }

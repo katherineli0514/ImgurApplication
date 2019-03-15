@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import SwiftyGif
 
 class GalleryViewController: UIViewController {
 
@@ -81,13 +82,16 @@ extension GalleryViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellReuseId, for: indexPath) as? PhotoCollectionViewCell {
             cell.galleryTitle.text = self.gallerys[indexPath.item].title
             let imageLink = self.gallerys[indexPath.item].imageLink
+            let gifLink = self.gallerys[indexPath.item].gifLink
         
             if let url = URL(string: imageLink) {
                 
             cell.photoImageView.sd_setImage(with: url, placeholderImage: placeHolderImage, options: SDWebImageOptions(rawValue: 0)) { (image, error, cacheType, imageURL) in
                 // Gifv (mp4) images
-                if image == nil {
+                if image == nil && gifLink != nil {
                     print(imageLink)
+                    let url = URL(string: gifLink!)
+                    cell.photoImageView.setGifFromURL(url)
                 }
                 self.gallerys[indexPath.item].image = image
                 }
